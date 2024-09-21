@@ -1,4 +1,4 @@
-import { Box, Container, Typography } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import { Form } from "../../components/form/Form";
 import { useRegister } from "../../context/context";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
