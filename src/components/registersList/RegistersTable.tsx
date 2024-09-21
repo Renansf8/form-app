@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
@@ -13,8 +12,13 @@ import { ToastContainer } from 'react-toastify';
 import { EditModal } from '../editModal/EditModal';
 
 export function RegistersTable() {
-  const [open, setOpen] = useState(false);
-  const { getAllRegisters, removeRegister, setRegisterSelected } = useRegister()
+  const { 
+    getAllRegisters, 
+    removeRegister, 
+    setRegisterSelected, 
+    setOpen, 
+    open 
+  } = useRegister()
   const { data, refetch } = getAllRegisters()
 
   const { mutate } = removeRegister(refetch)
@@ -23,8 +27,8 @@ export function RegistersTable() {
     setRegisterSelected(info)
     setOpen(true)
   }
-  
-  return (
+
+  return (    
       <TableContainer component={Paper} className="w-[100%]">
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>

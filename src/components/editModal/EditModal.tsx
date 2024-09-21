@@ -1,4 +1,3 @@
-import React from "react";
 import { Box, Modal, Typography } from "@mui/material";
 import { Form } from "../form/Form";
 import { useRegister } from "../../context/context";
@@ -12,6 +11,7 @@ const style = {
   boxShadow: 24,
   p: 4,
   color: "black",
+  borderRadius: '8px'
 };
 
 type ModalProps = {

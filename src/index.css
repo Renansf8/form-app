@@ -71,7 +71,6 @@ span {
 
 label {
   color: #a7a6a6;
-  align-self:flex-start;
 }
 
 @media (prefers-color-scheme: light) {

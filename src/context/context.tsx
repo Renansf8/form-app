@@ -1,15 +1,17 @@
 import { QueryObserverResult, RefetchOptions, useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React, { createContext, useContext, useState } from "react";
-import { toast } from 'react-toastify';
 import { toastMessage } from "../utils/toastMeassage";
 
 type ContextData = {
-  getAllRegisters: () => { data: RegisterProps[], refetch: (options?: RefetchOptions | undefined) => Promise<QueryObserverResult<any, Error>> };
+  getAllRegisters: () => { data: RegisterProps[], isLoading: boolean, refetch: (options?: RefetchOptions | undefined) => Promise<QueryObserverResult<any, Error>> };
   createRegister: () => { mutate: any};
   removeRegister: (refetch: (options?: RefetchOptions | undefined) => Promise<QueryObserverResult<any, Error>> ) => { mutate: any};
   setRegisterSelected: (info: RegisterProps) => void;
-  registerSelected?: RegisterProps | {};
+  registerSelected?: RegisterProps;
+  editRegister: (refetch: (options?: RefetchOptions | undefined) => Promise<QueryObserverResult<any, Error>> ) => { mutate: any};
+  setOpen: (value: boolean) => void
+  open: boolean
 }
 
 const RegistersContext = createContext<ContextData>({} as ContextData)
@@ -30,14 +32,22 @@ export type RegisterProps = {
 const BASE_URL = 'http://localhost:3000/users'
 
 export const RegistersProvider = ({ children }: ParamsProps) => {
-  const [registerSelected, setRegisterSelected] = useState({})
+  const [open, setOpen] = useState(false);
+  const [registerSelected, setRegisterSelected] = useState({
+    id: '',
+    name: '',
+    cpf: '',
+    email: '',
+    phone: '',
+    address: ''
+  })
 
   function getAllRegisters() {
-    const { data, refetch } = useQuery({
+    const { data, refetch, isLoading } = useQuery({
       queryKey: ['registers'],
       queryFn: () => axios.get(BASE_URL).then(response => response.data)
     })
-    return { data, refetch }
+    return { data, refetch, isLoading }
   }
 
   const submit = async (data: RegisterProps) => {
@@ -77,13 +87,35 @@ export const RegistersProvider = ({ children }: ParamsProps) => {
     return mutate
   }
 
+  const update = async (data: RegisterProps) => {
+    return await axios.put(`${BASE_URL}/${registerSelected.id}`, data)
+  }
+
+  function editRegister(action: any) {
+    const mutate = useMutation({
+      mutationFn: update,
+      onSuccess:()=>{
+        action()
+        return toastMessage("Cadastro atualizado com sucesso!", "success")
+      },
+      onError:()=>{
+        return toastMessage("Não foi possível atualizar o cadastro!", "error")
+      }
+    })
+    
+    return mutate
+  }
+
   return (
     <RegistersContext.Provider value={{ 
       getAllRegisters, 
       createRegister, 
       removeRegister,
       setRegisterSelected,
-      registerSelected
+      registerSelected,
+      editRegister,
+      setOpen,
+      open
       }}>
       {children}
     </RegistersContext.Provider>

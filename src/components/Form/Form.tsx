@@ -19,7 +19,7 @@ type FormProps = {
 }
 
 export function Form({ info, isEditForm }: FormProps) {
-  const { createRegister } = useRegister()
+  const { createRegister, editRegister, getAllRegisters, setOpen } = useRegister()
   const {
     register,
     handleSubmit,
@@ -29,64 +29,74 @@ export function Form({ info, isEditForm }: FormProps) {
   })
   const registerWithMask = useHookFormMask(register);
 
+  const { refetch } = getAllRegisters()
+
   const { mutate } = createRegister()
+
+  const { mutate: mutateEdit } = editRegister(refetch)
+
   function handleCreateRegister(data: CreateRegisterSchema) {
-    mutate(data)
+    if (!isEditForm) {
+      mutate(data)
+    } else {
+      mutateEdit(data)
+      setOpen(false)
+    }
   }
 
   return (
     <form onSubmit={handleSubmit(handleCreateRegister)} className="w-[400px] flex flex-col items-center">
-      <label htmlFor="">Nome</label>
+      <label htmlFor="" className="w-[90%]">Nome</label>
       <input
         defaultValue={info?.name}
         type="text"
         placeholder="Digite seu nome..."
-        className="mb-4 bg-stone-100 text-black border-[1.5px] border-[#bdbdbd] p-3 w-[100%] rounded-md focus:border-[#7913d8]"
+        className="mb-4 bg-stone-100 text-black border-[1.5px] border-[#bdbdbd] p-3 w-[90%] rounded-md focus:border-[#7913d8]"
         {...register('name')}
       />
       {errors.name && <span>*{errors.name?.message}</span>}
 
-      <label htmlFor="">CPF</label>
+      <label htmlFor="" className="w-[90%]">CPF</label>
       <input
         defaultValue={info?.cpf}
         type="text"
         placeholder="Digite seu CPF..."
-        className="mb-4 bg-stone-100 text-black border-[1.5px] border-[#bdbdbd] p-3 w-[100%] rounded-md focus:border-[#7913d8]"
+        className="mb-4 bg-stone-100 text-black border-[1.5px] border-[#bdbdbd] p-3 w-[90%] rounded-md focus:border-[#7913d8]"
         {...registerWithMask('cpf', ['999.999.999-99'])}
       />
       {errors.cpf && <span>*{errors.cpf?.message}</span>}
 
-      <label htmlFor="">E-mail</label>
+      <label htmlFor="" className="w-[90%]">E-mail</label>
       <input
         defaultValue={info?.email}
         type="text"
         placeholder="Digite seu E-mail..."
-        className="mb-4 bg-stone-100 text-black border-[1.5px] border-[#bdbdbd] p-3 w-[100%] rounded-md focus:border-[#7913d8]"
+        className="mb-4 bg-stone-100 text-black border-[1.5px] border-[#bdbdbd] p-3 w-[90%] rounded-md focus:border-[#7913d8]"
         {...register('email')}
       />
       {errors.email && <span>*{errors.email?.message}</span>}
 
-      <label htmlFor="">Telefone</label>
+      <label htmlFor="" className="w-[90%]">Telefone</label>
       <input
         defaultValue={info?.phone}
         type="text"
         placeholder="Digite seu telefone..."
-        className="mb-4 bg-stone-100 text-black border-[1.5px] border-[#bdbdbd] p-3 w-[100%] rounded-md focus:border-[#7913d8]"
+        className="mb-4 bg-stone-100 text-black border-[1.5px] border-[#bdbdbd] p-3 w-[90%] rounded-md focus:border-[#7913d8]"
         {...registerWithMask('phone', ['(99) 99999-9999'])}
       />
       {errors.phone && <span>*{errors.phone?.message}</span>}
 
-      <label htmlFor="">Endereço</label>
+      <label htmlFor="" className="w-[90%]">Endereço</label>
       <input
        defaultValue={info?.address}
         type="text"
         placeholder="Digite seu Endereço..."
-        className="mb-4 bg-stone-100 text-black border-[1.5px] border-[#bdbdbd] p-3 w-[100%] rounded-md focus:border-[#7913d8]"
+        className="mb-4 bg-stone-100 text-black border-[1.5px] border-[#bdbdbd] p-3 w-[90%] rounded-md focus:border-[#7913d8]"
         {...register('address')}
       />
 
-      <Button type="submit" className="w-[100%] bg-[#7913d8] border-none mt-2 p-2 font-bold" variant="contained">{isEditForm ? 'Salvar alterações' : 'Cadastrar'}</Button>
-      <ToastContainer closeOnClick theme="light" />
+      <Button type="submit" className="w-[90%] bg-[#7913d8] border-none mt-2 p-2 font-bold" variant="contained">{isEditForm ? 'Salvar alterações' : 'Cadastrar'}</Button>
+      {!isEditForm && <ToastContainer closeOnClick theme="light" />}
     </form>
   )
 }

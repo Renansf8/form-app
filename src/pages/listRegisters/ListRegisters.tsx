@@ -1,4 +1,3 @@
-import React from "react";
 import { Container, Typography } from "@mui/material";
 import { RegistersTable } from "../../components/registersList/RegistersTable";
 import { useNavigate } from "react-router-dom";
@@ -10,7 +9,6 @@ export function ListRegisters() {
   function handleClick() {
     navigate("/");
   }
-
 
   return (
     <Container className="relative w-[100%] flex-col justify-center items-center mt-[80px] text-xs">
