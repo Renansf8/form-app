@@ -1,4 +1,4 @@
-import { Register } from './pages/Register/Register'
+import Router from './router/router'
 
 function App() {
 
@@ -6,7 +6,7 @@ function App() {
     <div className='w-[100vw]'>
       <div className='bg-[#7913d8] w-[100%] h-[216px] absolute top-0 z-1'>
       </div>
-      <Register />
+      <Router />
     </div>
   )
 }
