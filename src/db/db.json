@@ -1,0 +1,12 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Renan Ferreira",
+      "CPF": "999.222.333-21",
+      "email": "renan@teste.com",
+      "phone": "(91)99929-3232",
+      "address": "av teste"
+    }
+  ]
+}
