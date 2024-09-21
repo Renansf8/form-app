@@ -4,8 +4,12 @@ import { useHookFormMask } from 'use-mask-input';
 import { useForm } from "react-hook-form";
 import { zodResolver } from '@hookform/resolvers/zod';
 import { CreateRegisterSchema, createRegisterSchema } from './validation';
+import { useRegister } from '../../context/context';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export function Form() {
+  const { createRegister } = useRegister()
   const {
     register,
     handleSubmit,
@@ -16,7 +20,7 @@ export function Form() {
   const registerWithMask = useHookFormMask(register);
 
   function handleCreateRegister(data: CreateRegisterSchema) {
-    console.log('data', data)
+    createRegister(data)
   }
 
   return (
@@ -66,6 +70,7 @@ export function Form() {
       />
 
       <Button type="submit" className="w-[100%] bg-[#7913d8] border-none mt-2 p-2" variant="contained">Enviar</Button>
+      <ToastContainer closeOnClick theme="light" />
     </form>
   )
 }

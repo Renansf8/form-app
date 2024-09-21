@@ -1,12 +1,20 @@
 {
   "users": [
     {
-      "id": 1,
-      "name": "Renan Ferreira",
-      "CPF": "999.222.333-21",
-      "email": "renan@teste.com",
-      "phone": "(91)99929-3232",
-      "address": "av teste"
+      "id": "c899",
+      "name": "Erivaldo",
+      "cpf": "231.230.812-03",
+      "email": "valdo@gmail.com",
+      "phone": "(21) 03981-2039",
+      "address": "av teste 3"
+    },
+    {
+      "id": "2063",
+      "name": "Ruan Ferreira",
+      "cpf": "210.398.120-38",
+      "email": "ruan@teste.com",
+      "phone": "(12) 03991-2389",
+      "address": ""
     }
   ]
 }
