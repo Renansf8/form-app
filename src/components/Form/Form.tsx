@@ -19,8 +19,9 @@ export function Form() {
   })
   const registerWithMask = useHookFormMask(register);
 
+  const { mutate } = createRegister()
   function handleCreateRegister(data: CreateRegisterSchema) {
-    createRegister(data)
+    mutate(data)
   }
 
   return (

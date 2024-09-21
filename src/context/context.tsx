@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React, { createContext, useContext, useState } from "react";
 import { toast } from 'react-toastify';
@@ -26,28 +26,30 @@ type RegisterProps = {
 const BASE_URL = 'http://localhost:3000/users'
 
 export const RegistersProvider = ({ children }: ParamsProps) => {
-  const [registers, setRegisters] = useState([])
-
-  async function getAllRegisters() {
-    try {
-      const response = await axios.get(BASE_URL)
-      .then(response => setRegisters(response.data))
-      return response
-    } catch (err) {
-      return toast("Não foi possível listar os registros!", { type: 'error'})
-    }
+  function getAllRegisters() {
+    const { data } = useQuery({
+      queryKey: ['registers'],
+      queryFn: () => axios.get(BASE_URL).then(response => response.data)
+    })
+    return { data }
   }
-  console.log('registers', registers)
 
-  async function createRegister(data: RegisterProps) {
-    try {
-      const create = await axios.post(BASE_URL, data)
-      .then(() => toast("Cadastro realizado com sucesso!", { type: 'success'}));
-      console.log('create', create)
-      return create
-    } catch (err) {
-      return toast("Não foi possível realizar o cadastro!", { type: 'error'})
-    }
+  const submit = async (data: RegisterProps) => {
+    return await axios.post(BASE_URL, data)
+  }
+
+  function createRegister() {
+    const mutate = useMutation({
+      mutationFn: submit,
+      onSuccess:()=>{
+        return toast("Cadastro realizado com sucesso!", { type: 'success'})
+      },
+      onError:()=>{
+        return toast("Cadastro realizado com sucesso!", { type: 'success'})
+      }
+    })
+    
+    return mutate
   }
 
   return (
