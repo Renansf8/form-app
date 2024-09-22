@@ -13,7 +13,7 @@ export function Register() {
 
   return (
     <Container className="w-[90%] relative flex flex-col justify-center items-center px-6 py-8 bg-stone-100 mt-[72px] rounded-xl">
-      <Typography className="text-[#242424] text-xl mb-4">Preencha seus dados</Typography>
+      <Typography className="text-[#242424] text-xl mb-4">Preencha os dados de registro</Typography>
       <Form />
       <div onClick={handleClick} className="flex items-center mt-4 cursor-pointer hover:translate-x-3 transition-all">
         <Typography className="text-[#7913d8] font-bold">Ir para a lista de registros</Typography>
