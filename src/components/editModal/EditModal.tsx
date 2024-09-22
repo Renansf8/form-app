@@ -1,6 +1,6 @@
 import { Box, Modal, Typography } from "@mui/material";
 import { Form } from "../form/Form";
-import { useRegister } from "../../context/context";
+import { useRegister } from "../../context/Context";
 import { ModalProps } from "./IEditModal";
 
 const style = {

@@ -3,7 +3,7 @@ import { useHookFormMask } from 'use-mask-input';
 import { useForm } from "react-hook-form";
 import { zodResolver } from '@hookform/resolvers/zod';
 import { CreateRegisterSchema, createRegisterSchema } from './validation';
-import { useRegister } from '../../context/context';
+import { useRegister } from '../../context/Context';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Input, InputMask } from "../input/Input";

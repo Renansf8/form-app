@@ -2,7 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
-import { RegistersProvider } from './context/context.tsx'
+import { RegistersProvider } from './context/Context.tsx'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 import { ThemeProvider } from '@mui/material'
