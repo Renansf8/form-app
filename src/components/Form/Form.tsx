@@ -23,7 +23,8 @@ export function Form({ info, isEditForm }: FormProps) {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
+    reset
   } = useForm<CreateRegisterSchema>({
     resolver: zodResolver(createRegisterSchema)
   })
@@ -38,6 +39,7 @@ export function Form({ info, isEditForm }: FormProps) {
   function handleCreateRegister(data: CreateRegisterSchema) {
     if (!isEditForm) {
       mutate(data)
+      reset()
     } else {
       mutateEdit(data)
       setOpen(false)
