@@ -1,7 +1,8 @@
-import { Box, Modal, Typography } from "@mui/material";
 import { Form } from "../form/Form";
-import { useRegister } from "../../context/Context";
 import { ModalProps } from "./IEditModal";
+import { useRegister } from "../../context/Context";
+
+import { Box, Modal, Typography } from "@mui/material";
 
 const style = {
   position: 'absolute' as 'absolute',

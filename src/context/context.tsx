@@ -1,8 +1,9 @@
-import { QueryObserverResult, RefetchOptions, useMutation, useQuery } from "@tanstack/react-query";
-import axios from "axios";
-import { createContext, useContext, useState } from "react";
 import { toastMessage } from "../utils/toastMeassage";
 import { ParamsProps, RegisterProps } from "./IContext";
+
+import axios from "axios";
+import { QueryObserverResult, RefetchOptions, useMutation, useQuery } from "@tanstack/react-query";
+import { createContext, useContext, useState } from "react";
 
 type ContextData = {
   getAllRegisters: () => { data: RegisterProps[], isLoading: boolean, refetch: (options?: RefetchOptions | undefined) => Promise<QueryObserverResult<any, Error>> };

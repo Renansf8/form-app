@@ -1,16 +1,17 @@
+import { useRegister } from "../../context/Context";
+import { TableHeader } from './Table-header';
+import { TableCellRow } from './Table-cell';
+import { ToastContainer } from 'react-toastify';
+import { EditModal } from '../editModal/EditModal';
+import { RegisterProps } from '../../context/IContext';
+
+import { Button, Container, Typography } from "@mui/material";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { useRegister } from "../../context/Context";
-import { Button, Container, Typography } from "@mui/material";
-import { TableHeader } from './Table-header';
-import { TableCellRow } from './Table-cell';
-import { ToastContainer } from 'react-toastify';
-import { EditModal } from '../editModal/EditModal';
-import { RegisterProps } from '../../context/IContext';
 
 export function RegistersTable() {
   const { 
