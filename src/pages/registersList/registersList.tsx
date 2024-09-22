@@ -3,7 +3,7 @@ import { RegistersTable } from "../../components/registersTable/RegistersTable";
 import { useNavigate } from "react-router-dom";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-export function ListRegisters() {
+export function RegistersList() {
   const navigate = useNavigate();
 
   function handleClick() {
