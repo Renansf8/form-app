@@ -13,6 +13,7 @@
  - [react-hook-form](https://react-hook-form.com/)
  - [Zod](https://zod.dev/)
  - [Material UI](https://mui.com/pt/)
+ - [Tailwind CSS](https://tailwindcss.com/)
  - [React Query](https://tanstack.com/query/v3)
  - [json-server](https://www.npmjs.com/package/json-server)
 
@@ -32,6 +33,13 @@
   $ npm install
   # ou
   $ yarn
+ ````
+
+ ```bash
+  # Instalar o pacote de banco de dados (json-server)
+  $ npm install -g json-server
+  # ou
+  $ yarn global add json-server
  ````
 
  ```bash
