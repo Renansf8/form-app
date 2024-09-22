@@ -4,12 +4,13 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { RegisterProps, useRegister } from "../../context/context";
+import { useRegister } from "../../context/context";
 import { Button, Container, Typography } from "@mui/material";
 import { TableHeader } from './Table-header';
 import { TableCellRow } from './Table-cell';
 import { ToastContainer } from 'react-toastify';
 import { EditModal } from '../editModal/EditModal';
+import { RegisterProps } from '../../context/IContext';
 
 export function RegistersTable() {
   const { 

@@ -1,7 +1,8 @@
 import { QueryObserverResult, RefetchOptions, useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import React, { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { toastMessage } from "../utils/toastMeassage";
+import { ParamsProps, RegisterProps } from "./IContext";
 
 type ContextData = {
   getAllRegisters: () => { data: RegisterProps[], isLoading: boolean, refetch: (options?: RefetchOptions | undefined) => Promise<QueryObserverResult<any, Error>> };
@@ -15,19 +16,6 @@ type ContextData = {
 }
 
 const RegistersContext = createContext<ContextData>({} as ContextData)
-
-type ParamsProps = {
-  children: React.ReactNode
-}
-
-export type RegisterProps = {
-  id: string;
-  name: string;
-  cpf: string;
-  email: string;
-  phone: string;
-  address: string;
-}
 
 const BASE_URL = 'http://localhost:3000/users'
 
@@ -108,14 +96,14 @@ export const RegistersProvider = ({ children }: ParamsProps) => {
 
   return (
     <RegistersContext.Provider value={{ 
-      getAllRegisters, 
-      createRegister, 
-      removeRegister,
-      setRegisterSelected,
-      registerSelected,
-      editRegister,
-      setOpen,
-      open
+        getAllRegisters, 
+        createRegister, 
+        removeRegister,
+        setRegisterSelected,
+        registerSelected,
+        editRegister,
+        setOpen,
+        open
       }}>
       {children}
     </RegistersContext.Provider>

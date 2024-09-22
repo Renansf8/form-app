@@ -1,20 +1,3 @@
 {
-  "users": [
-    {
-      "id": "2471",
-      "name": "Renan Ferreira",
-      "cpf": "382.190.381-09",
-      "email": "renan@teste.com",
-      "phone": "(31) 20391-2039",
-      "address": "av teste"
-    },
-    {
-      "id": "4b1f",
-      "name": "Roberta Oliveira",
-      "cpf": "000.271.692-51",
-      "email": "roberta@teste.com",
-      "phone": "(91) 29102-9102",
-      "address": "tv we 47"
-    }
-  ]
+  "users": []
 }

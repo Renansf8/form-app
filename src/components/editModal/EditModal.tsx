@@ -1,6 +1,7 @@
 import { Box, Modal, Typography } from "@mui/material";
 import { Form } from "../form/Form";
 import { useRegister } from "../../context/context";
+import { ModalProps } from "./IEditModal";
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -13,11 +14,6 @@ const style = {
   color: "black",
   borderRadius: '8px'
 };
-
-type ModalProps = {
-  open: boolean,
-  setOpen: (value: boolean) => void
-}
 
 export function EditModal({ open, setOpen }: ModalProps) {
   const { registerSelected } = useRegister()

@@ -64,8 +64,7 @@ input:focus {
 span {
   color: red;
   font-size: 14px;
-  margin-bottom: 8px;
-  align-self:flex-start;
+  margin-bottom:6px;
   margin-top: -16px;
 }
 

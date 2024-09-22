@@ -6,17 +6,8 @@ import { CreateRegisterSchema, createRegisterSchema } from './validation';
 import { useRegister } from '../../context/context';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-type FormProps = {
-  info?: {
-    name?: string,
-    cpf?: string,
-    email?: string,
-    phone?: string,
-    address?: string,
-  },
-  isEditForm?: boolean,
-}
+import { Input, InputMask } from "../input/Input";
+import { FormProps } from "./IForm";
 
 export function Form({ info, isEditForm }: FormProps) {
   const { createRegister, editRegister, getAllRegisters, setOpen } = useRegister()
@@ -48,53 +39,51 @@ export function Form({ info, isEditForm }: FormProps) {
 
   return (
     <form onSubmit={handleSubmit(handleCreateRegister)} className="w-[400px] flex flex-col items-center">
-      <label htmlFor="" className="w-[90%]">Nome</label>
-      <input
-        defaultValue={info?.name}
-        type="text"
+      <Input
         placeholder="Digite seu nome..."
-        className="mb-4 bg-stone-100 text-black border-[1.5px] border-[#bdbdbd] p-3 w-[90%] rounded-md focus:border-[#7913d8]"
-        {...register('name')}
+        errors={errors}
+        register={register}
+        label="Nome"
+        defaultValue={info?.name}
+        nameRegister="name"
       />
-      {errors.name && <span>*{errors.name?.message}</span>}
 
-      <label htmlFor="" className="w-[90%]">CPF</label>
-      <input
-        defaultValue={info?.cpf}
-        type="text"
+      <InputMask
         placeholder="Digite seu CPF..."
-        className="mb-4 bg-stone-100 text-black border-[1.5px] border-[#bdbdbd] p-3 w-[90%] rounded-md focus:border-[#7913d8]"
-        {...registerWithMask('cpf', ['999.999.999-99'])}
+        errors={errors}
+        registerWithMask={registerWithMask}
+        label="CPF"
+        defaultValue={info?.cpf}
+        nameRegister="cpf"
+        mask={["999.999.999-99"]}
       />
-      {errors.cpf && <span>*{errors.cpf?.message}</span>}
 
-      <label htmlFor="" className="w-[90%]">E-mail</label>
-      <input
+      <Input
+        placeholder="Digite seu e-mail..."
+        errors={errors}
+        register={register}
+        label="E-mail"
         defaultValue={info?.email}
-        type="text"
-        placeholder="Digite seu E-mail..."
-        className="mb-4 bg-stone-100 text-black border-[1.5px] border-[#bdbdbd] p-3 w-[90%] rounded-md focus:border-[#7913d8]"
-        {...register('email')}
+        nameRegister="email"
       />
-      {errors.email && <span>*{errors.email?.message}</span>}
 
-      <label htmlFor="" className="w-[90%]">Telefone</label>
-      <input
-        defaultValue={info?.phone}
-        type="text"
+      <InputMask
         placeholder="Digite seu telefone..."
-        className="mb-4 bg-stone-100 text-black border-[1.5px] border-[#bdbdbd] p-3 w-[90%] rounded-md focus:border-[#7913d8]"
-        {...registerWithMask('phone', ['(99) 99999-9999'])}
+        errors={errors}
+        registerWithMask={registerWithMask}
+        label="Telefone"
+        defaultValue={info?.phone}
+        nameRegister="phone"
+        mask={["(99) 99999-9999"]}
       />
-      {errors.phone && <span>*{errors.phone?.message}</span>}
 
-      <label htmlFor="" className="w-[90%]">Endereço</label>
-      <input
-       defaultValue={info?.address}
-        type="text"
-        placeholder="Digite seu Endereço..."
-        className="mb-4 bg-stone-100 text-black border-[1.5px] border-[#bdbdbd] p-3 w-[90%] rounded-md focus:border-[#7913d8]"
-        {...register('address')}
+      <Input
+        placeholder="Digite seu endereço..."
+        errors={errors}
+        register={register}
+        label="Endereço"
+        defaultValue={info?.address}
+        nameRegister="address"
       />
 
       <Button type="submit" className="w-[90%] bg-[#7913d8] border-none mt-2 p-2 font-bold" variant="contained">{isEditForm ? 'Salvar alterações' : 'Cadastrar'}</Button>
