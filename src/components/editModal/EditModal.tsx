@@ -1,6 +1,6 @@
-import { Form } from "../form/Form";
+import { Form } from "../Form/Form";
 import { ModalProps } from "./IEditModal";
-import { useRegister } from "../../context/Context";
+import { useRegister } from "../../context/context";
 
 import { Box, Modal, Typography } from "@mui/material";
 

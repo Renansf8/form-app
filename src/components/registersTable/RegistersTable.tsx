@@ -1,4 +1,4 @@
-import { useRegister } from "../../context/Context";
+import { useRegister } from "../../context/context";
 import { TableHeader } from './Table-header';
 import { TableCellRow } from './Table-cell';
 import { ToastContainer } from 'react-toastify';

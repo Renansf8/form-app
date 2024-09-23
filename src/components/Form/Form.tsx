@@ -1,7 +1,7 @@
 import { Input, InputNumber } from "../input/Input";
 import { FormProps } from "./IForm";
 import { CreateRegisterSchema, createRegisterSchema } from './validation';
-import { useRegister } from '../../context/Context';
+import { useRegister } from '../../context/context';
 
 import { useForm } from "react-hook-form";
 import { ToastContainer } from 'react-toastify';
