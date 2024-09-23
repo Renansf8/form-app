@@ -19,6 +19,7 @@ export const Input: React.FC<Props> = ({
         {...register!(nameRegister)}
         label={label}
         defaultValue={defaultValue}
+        autoComplete="new-password"
        />
       {errors[nameRegister] && <span className="w-[90%]">*{errors[nameRegister]?.message}</span>}
     </>
@@ -45,6 +46,11 @@ export const InputNumber: React.FC<Props> = ({
         // Código para limitar a quantidade de caracteres no input tipo "number"
         onInput={(e: any)=>{ 
           e.target.value = Math.max(-1, parseInt(e.target.value) ).toString().slice(0,11)
+        }}
+        slotProps={{
+          htmlInput: {
+            autoComplete: "off"
+          }
         }}
        />
       {errors[nameRegister] && <span className="w-[90%]">*{errors[nameRegister]?.message}</span>}
