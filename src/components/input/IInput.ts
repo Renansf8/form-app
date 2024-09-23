@@ -1,10 +1,8 @@
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 
-type InputProps = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
-
 type FieldProps = "name" | "cpf" | "email" | "phone" | "address";
 
-export interface Props extends InputProps {
+export interface Props {
   errors: FieldErrors<{
     name: string;
     cpf: string;
@@ -19,8 +17,7 @@ export interface Props extends InputProps {
     phone: string;
     address?: string | undefined;
 }>;
-  registerWithMask?: (fieldName: FieldProps, mask: string[]) => any;
   label: string;
   nameRegister: FieldProps;
-  mask?: string[]
+  defaultValue?: string;
 }

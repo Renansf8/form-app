@@ -64,7 +64,7 @@ export function RegistersTable() {
         </Table>
         {data.length === 0 && (
           <Container className='w-[90%] flex items-center justify-center text-center h-[160px]'>
-            <Typography>A lista ainda não possui nenhum registro!</Typography>
+            <Typography className="text-[#565656]">A lista ainda não possui nenhum registro!</Typography>
           </Container>
         )}
         <ToastContainer closeOnClick theme="light" />

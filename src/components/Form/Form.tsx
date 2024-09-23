@@ -1,10 +1,9 @@
-import { Input, InputMask } from "../input/Input";
+import { Input, InputNumber } from "../input/Input";
 import { FormProps } from "./IForm";
 import { CreateRegisterSchema, createRegisterSchema } from './validation';
 import { useRegister } from '../../context/Context';
 
 import { useForm } from "react-hook-form";
-import { useHookFormMask } from 'use-mask-input';
 import { ToastContainer } from 'react-toastify';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from "@mui/material";
@@ -21,8 +20,6 @@ export function Form({ info, isEditForm }: FormProps) {
   } = useForm<CreateRegisterSchema>({
     resolver: zodResolver(createRegisterSchema)
   })
-  const registerWithMask = useHookFormMask(register);
-
   const { refetch } = getAllRegisters()
 
   const { mutate } = createRegister()
@@ -42,7 +39,6 @@ export function Form({ info, isEditForm }: FormProps) {
   return (
     <form onSubmit={handleSubmit(handleCreateRegister)} className="w-[400px] flex flex-col items-center">
       <Input
-        placeholder="Digite seu nome..."
         errors={errors}
         register={register}
         label="Nome"
@@ -50,18 +46,15 @@ export function Form({ info, isEditForm }: FormProps) {
         nameRegister="name"
       />
 
-      <InputMask
-        placeholder="Digite seu CPF..."
+      <InputNumber
         errors={errors}
-        registerWithMask={registerWithMask}
+        register={register}
         label="CPF"
         defaultValue={info?.cpf}
         nameRegister="cpf"
-        mask={["999.999.999-99"]}
       />
 
       <Input
-        placeholder="Digite seu e-mail..."
         errors={errors}
         register={register}
         label="E-mail"
@@ -69,18 +62,15 @@ export function Form({ info, isEditForm }: FormProps) {
         nameRegister="email"
       />
 
-      <InputMask
-        placeholder="Digite seu telefone..."
+      <InputNumber
         errors={errors}
-        registerWithMask={registerWithMask}
+        register={register}
         label="Telefone"
         defaultValue={info?.phone}
         nameRegister="phone"
-        mask={["(99) 99999-9999"]}
       />
 
       <Input
-        placeholder="Digite seu endereço..."
         errors={errors}
         register={register}
         label="Endereço"
@@ -88,7 +78,7 @@ export function Form({ info, isEditForm }: FormProps) {
         nameRegister="address"
       />
 
-      <Button type="submit" className="w-[90%] bg-[#7913d8] border-none mt-2 p-2 font-bold" variant="contained">{isEditForm ? 'Salvar alterações' : 'Cadastrar'}</Button>
+      <Button type="submit" className="w-[90%] bg-[#f47915] border-none mt-2 p-2 font-bold" variant="contained">{isEditForm ? 'Salvar alterações' : 'Cadastrar'}</Button>
       {!isEditForm && <ToastContainer closeOnClick theme="light" />}
     </form>
   )

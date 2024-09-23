@@ -1,45 +1,51 @@
 import React from "react";
 import { Props } from "./IInput";
+import { TextField } from "@mui/material";
 
 export const Input: React.FC<Props> = ({
   register, 
   errors, 
   label, 
-  nameRegister, 
-  registerWithMask, 
-  ...props
+  nameRegister,
+  defaultValue,
 }: Props) => {
   return (
     <>
-      <label htmlFor="" className="w-[90%]">{label}</label>
-      <input
-        {...props}
+      <TextField
+        variant="outlined"
         type="text"
-        className="mb-4 bg-stone-100 text-black border-[1.5px] border-[#bdbdbd] p-3 w-[90%] rounded-md focus:border-[#7913d8]"
+        color="warning"
+        className="mb-4 text-black w-[90%] rounded-md"
         {...register!(nameRegister)}
+        label={label}
+        defaultValue={defaultValue}
        />
       {errors[nameRegister] && <span className="w-[90%]">*{errors[nameRegister]?.message}</span>}
     </>
   )
 }
 
-export const InputMask: React.FC<Props> = ({
+export const InputNumber: React.FC<Props> = ({
   register, 
   errors, 
   label, 
-  nameRegister, 
-  registerWithMask, 
-  mask,
-  ...props
+  nameRegister,
+  defaultValue,
 }: Props) => {
   return (
     <>
-      <label htmlFor="" className="w-[90%]">{label}</label>
-      <input
-        {...props}
-        type="text"
-        className="mb-4 bg-stone-100 text-black border-[1.5px] border-[#bdbdbd] p-3 w-[90%] rounded-md focus:border-[#7913d8]"
-        {...registerWithMask!(nameRegister, mask!)}
+      <TextField
+        variant="outlined"
+        type="number"
+        color="warning"
+        className="mb-4 text-black w-[90%] rounded-md"
+        {...register!(nameRegister)}
+        label={label}
+        defaultValue={defaultValue}
+        // Código para limitar a quantidade de caracteres no input tipo "number"
+        onInput={(e: any)=>{ 
+          e.target.value = Math.max(-1, parseInt(e.target.value) ).toString().slice(0,11)
+        }}
        />
       {errors[nameRegister] && <span className="w-[90%]">*{errors[nameRegister]?.message}</span>}
     </>
